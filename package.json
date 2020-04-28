@@ -1,0 +1,17 @@
+{
+  "name": "firebasetest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sean Thompson",
+  "license": "ISC",
+  "dependencies": {
+    "@mysql/xdevapi": "^8.0.19",
+    "dotenv": "^8.2.0",
+    "firebase": "^7.14.1",
+    "mysql2": "^2.1.0"
+  }
+}
