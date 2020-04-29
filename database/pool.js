@@ -24,23 +24,42 @@ const promisePool = pool.promise();
 
 const insertQuery = [
 	'INSERT INTO User',
-	'( Username )',
-	`VALUES( ? )`
+	'( Username, NewestItem )',
+	`VALUES( ?, ? )`
 ].join(' ');
 //const params = [
 	//'blaze'
 //]
 
-function insertUser(userName) {
+function insertUser(userName, itemNum) {
 	pool.execute(
 		insertQuery,
-		[ userName ],
+		[ userName, itemNum ],
 		function(err, results) {
-			console.log("Results", results);
-			
+			if (err) console.error(err);
+			console.log("Insert User Res", results);
 		}
 	)
 }
+
+const updateUserQuery = [
+	'UPDATE User',
+	'SET NewestItem = ?',
+	'WHERE UserID = ?'
+].join(' ');
+
+function updateUser(userId, itemId) {
+	pool.execute(
+		updateUserQuery,
+		[ itemId, userId ],
+		function(err, results) {
+			if (err) console.error(err);
+			console.log("Update User Res", userId, results);
+		}
+	)
+}
+
+
 const insertKarmaQuery = [
 	'INSERT INTO Karma',
 	'( UserID, Karma )',
@@ -63,16 +82,28 @@ function insertKarma(userId, karma) {
 const selectAllUsers = 'SELECT UserID, Username FROM User';
 
 async function getAllUsers() {
-	const [rows, fields] = await promisePool.execute(
+	const [ rows ] = await promisePool.execute(
 		selectAllUsers
-	);
+	).catch((err) => console.error(err));
 
 	return rows;
 }
 
+const userQuery = 'SELECT * FROM User WHERE Username = ?';
+
+async function getUserByName(name) {
+	const [ rows ] = await promisePool.execute(
+		userQuery,
+		[ name ]
+	).catch((err) => console.error(err));
+	//console.log('Rows', rows);
+	return rows;
+}
 
 module.exports = {
 	insertUser,
+	updateUser,
 	insertKarma,
-	getAllUsers
+	getAllUsers,
+	getUserByName
 }
