@@ -1,4 +1,4 @@
-//require('dotenv').config();
+const log = require('pino')({'level': 'debug'});
 require('dotenv').config({
 	path: 'config/.env'
 });
@@ -16,11 +16,11 @@ const config = {
 	connectionLimit: 10,
 	queueLimit: 0
 };
-//console.log('Config', config);
+//log.info('Config', config);
 
 const pool = mysql.createPool(config);
 const promisePool = pool.promise();
-//console.log("pool", pool);
+//log.info("pool", pool);
 
 const insertQuery = [
 	'INSERT INTO User',
@@ -36,8 +36,12 @@ function insertUser(userName, itemNum) {
 		insertQuery,
 		[ userName, itemNum ],
 		function(err, results) {
-			if (err) console.error(err);
-			console.log("Insert User Res", results);
+			if (err) {
+				log.error(err.code);
+			}
+			log.debug({
+				...results
+			}, "Insert User success");
 		}
 	)
 }
@@ -53,8 +57,11 @@ function updateUser(userId, itemId) {
 		updateUserQuery,
 		[ itemId, userId ],
 		function(err, results) {
-			if (err) console.error(err);
-			console.log("Update User Res", userId, results);
+			if (err) log.error(err);
+			log.debug({
+				'user id': userId,
+				'response': results
+			}, "Update User success");
 		}
 	)
 }
@@ -73,18 +80,18 @@ function insertKarma(userId, karma) {
 		insertKarmaQuery,
 		[ userId, karma ],
 		function(err, results) {
-			console.log("Insert Karma results", results);
+			log.debug({...results}, "Insert Karma results");
 		}
 	)
 }
 
 
-const selectAllUsers = 'SELECT UserID, Username FROM User';
+//const selectAllUsers = 'SELECT UserID, Username FROM User';
 
 async function getAllUsers() {
 	const [ rows ] = await promisePool.execute(
 		selectAllUsers
-	).catch((err) => console.error(err));
+	).catch((err) => log.error(err, "SELECT all Users failed"));
 
 	return rows;
 }
@@ -95,8 +102,8 @@ async function getUserByName(name) {
 	const [ rows ] = await promisePool.execute(
 		userQuery,
 		[ name ]
-	).catch((err) => console.error(err));
-	//console.log('Rows', rows);
+	).catch((err) => log.error(err, "Select USer by name failed"));
+	//log.info('Rows', rows);
 	return rows;
 }
 

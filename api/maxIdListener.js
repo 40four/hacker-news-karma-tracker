@@ -1,3 +1,4 @@
+const log = require('pino')();
 const db = require("../database/pool.js");
 
 function listenForChanges(api) {
@@ -6,14 +7,14 @@ function listenForChanges(api) {
 		//const max = await db.getMaxId();
 		//return max;
 	//})();
-	//console.log("MAX", maxId);
+	//log.info(maxId,"MAX");
 	let maxId;
 	const maxIdEndpoint = api.ref('/v0/maxitem');
 	const genItemEndpoint = (id) => api.ref(`/v0/item/${id}`);
 
 	maxIdEndpoint.on('value', (snapshot) => {
 		const newMaxId = snapshot.val();
-		console.log('maxId', newMaxId);
+		log.info({'newMaxId': newMaxId}, 'Max ID changed');
 
 		if (newMaxId) {
 			const diff = newMaxId - maxId;
@@ -23,16 +24,21 @@ function listenForChanges(api) {
 				for ( let cnt = 0 ; cnt < diff; cnt ++ ) {
 					const idAdjusted = newMaxId - cnt;
 					const endP = genItemEndpoint(idAdjusted);
-					console.log('adjust', idAdjusted);
+					//log.info('adjust', idAdjusted);
 
 					endP.once('value', (snapshot) => {
 						const thisValue = snapshot.val();
-						//console.log(thisValue);
+						//log.info(thisValue);
 						if ( thisValue ) {
-							//console.log("Cur item", thisValue.id);
+							//log.info(thisValue.id, "Cur item");
 							if ( 'by' in thisValue ) {
 								(async function findUser() {
 									const result = await db.getUserByName(thisValue.by);
+									//console.log('USER search', result);
+									
+									// TODO: Note there is a possibility of a race
+									// condition here if a user has consecutive or
+									// near consecutive items
 									if ( result.hasOwnProperty(0) ) {
 										//console.log("RUZ", result);
 										db.updateUser(result[0].UserID, thisValue.id);
