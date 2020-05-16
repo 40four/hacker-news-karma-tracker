@@ -39,9 +39,10 @@ function insertUser(userName, itemNum) {
 			if (err) {
 				log.error(err.code);
 			}
-			log.debug({
-				...results
-			}, "Insert User success");
+			log.debug(
+				{...results},
+				"Insert User success"
+			);
 		}
 	)
 }
@@ -86,12 +87,12 @@ function insertKarma(userId, karma) {
 }
 
 
-//const selectAllUsers = 'SELECT UserID, Username FROM User';
+const selectAllUsers = 'SELECT UserID, Username FROM User';
 
 async function getAllUsers() {
 	const [ rows ] = await promisePool.execute(
 		selectAllUsers
-	).catch((err) => log.error(err, "SELECT all Users failed"));
+	).catch((err) => log.error({...err}, "SELECT all Users failed"));
 
 	return rows;
 }
@@ -102,7 +103,7 @@ async function getUserByName(name) {
 	const [ rows ] = await promisePool.execute(
 		userQuery,
 		[ name ]
-	).catch((err) => log.error(err, "Select USer by name failed"));
+	).catch((err) => log.error({...err}, "Select User by name failed"));
 	//log.info('Rows', rows);
 	return rows;
 }

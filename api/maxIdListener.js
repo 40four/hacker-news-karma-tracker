@@ -12,19 +12,20 @@ function listenForChanges(api) {
 	const maxIdEndpoint = api.ref('/v0/maxitem');
 	const genItemEndpoint = (id) => api.ref(`/v0/item/${id}`);
 
+	//Listen for changes to max id endpoint
 	maxIdEndpoint.on('value', (snapshot) => {
 		const newMaxId = snapshot.val();
 		log.info({'newMaxId': newMaxId}, 'Max ID changed');
 
 		if (newMaxId) {
+			//Determine the difference between the new ID and the last one
+			//recorded, used below to iterate new group of items
 			const diff = newMaxId - maxId;
 			// Wait for items to be ready, seems to be a small delay	
 			setTimeout(() => {
-
 				for ( let cnt = 0 ; cnt < diff; cnt ++ ) {
 					const idAdjusted = newMaxId - cnt;
 					const endP = genItemEndpoint(idAdjusted);
-					//log.info('adjust', idAdjusted);
 
 					endP.once('value', (snapshot) => {
 						const thisValue = snapshot.val();
@@ -34,16 +35,9 @@ function listenForChanges(api) {
 							if ( 'by' in thisValue ) {
 								(async function findUser() {
 									const result = await db.getUserByName(thisValue.by);
-									//console.log('USER search', result);
-									
-									// TODO: Note there is a possibility of a race
-									// condition here if a user has consecutive or
-									// near consecutive items
 									if ( result.hasOwnProperty(0) ) {
-										//console.log("RUZ", result);
 										db.updateUser(result[0].UserID, thisValue.id);
 									} else {
-										//console.log("RAZ", result);
 										db.insertUser(thisValue.by, thisValue.id);
 									}
 								})();
@@ -53,17 +47,13 @@ function listenForChanges(api) {
 					});
 				}
 
-			}, (10000))
+			}, (20000))
 
-
-			//console.log('heyoh', newMaxId);
+			// Update maxId placeholder
 			maxId = newMaxId;
 		}
-		
 	});
 }
-
-//function 
 
 module.exports = {
 	listenForChanges	

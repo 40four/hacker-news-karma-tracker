@@ -11,6 +11,4 @@ function getOneItem(api, itemId) {
 	});
 }
 
-//function 
-
 module.exports = getOneItem;

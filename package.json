@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@mysql/xdevapi": "^8.0.19",
+    "cron": "^1.8.2",
     "dotenv": "^8.2.0",
     "firebase": "^7.14.1",
     "mysql2": "^2.1.0",

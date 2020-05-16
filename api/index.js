@@ -3,6 +3,7 @@ const firebase = require("firebase/app");
 const database = require("firebase/database");
 
 const maxIdEndpoint = require("./maxIdListener.js");
+const measureAllKarma = require("./measureKarmaAllUsers.js");
 
 const firebaseConfig = {
 	databaseURL: "https://hacker-news.firebaseio.com/"
@@ -18,5 +19,6 @@ const api = firebase.database(app);
 
 module.exports = {
 	'api': api,
-	'maxId': maxIdEndpoint
+	'maxId': maxIdEndpoint,
+	'measure': measureAllKarma
 }

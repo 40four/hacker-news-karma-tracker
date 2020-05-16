@@ -1,34 +1,36 @@
+const log = require('pino')({'level': 'debug'});
+var CronJob = require('cron').CronJob;
+
 const { 
 	api,
-	maxId
+	maxId,
+	measure
 } = require('./api/index.js');
 
 
-maxId.listenForChanges(api);
+try {
+	maxId.listenForChanges(api);
 
-//const shutdown = (app) => {
-	//app.delete()
-	  //.then(function() {
-		//console.log("App deleted successfully");
-	  //})
-	  //.catch(function(error) {
-		//console.log("Error deleting app:", error);
-	  //});
-//};
+	const job = new CronJob(
+		'0 0 0 * * *',
+		measure.measureAllKarma(api);,
+		null,
+		true,
+		'America/Los_Angeles'
+	);
 
-//const genUserEndpoint = (username) => db.ref(`/v0/user/${username}`);
+} catch (err) {
 
-//(async function getAllUserKarma() {
+	log.error({...err}, "Main app error");
 
-	//const allUsers = await data.getAllUsers();
-	////console.log('USERS', allUsers);
-	//for (const user of allUsers) {
-
-		//genUserEndpoint(user.Username).once('value').then((snap) => {
-			////console.log('Snap', snap.val());
-			//const thisSnap = snap.val();
-			//data.insertKarma(user.UserID, thisSnap.karma);
-		//});
-	//}
-
-//})();
+} finally {
+	//const shutdown = (app) => {
+		//app.delete()
+		  //.then(function() {
+			//console.log("App deleted successfully");
+		  //})
+		  //.catch(function(error) {
+			//console.log("Error deleting app:", error);
+		  //});
+	//};
+}
