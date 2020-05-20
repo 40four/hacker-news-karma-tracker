@@ -1,7 +1,7 @@
 const log = require('pino')();
-const db = require("../database/pool.js");
+const db = require("../../database/pool.js");
 
-function listenForChanges(api) {
+exports.listenForChanges = (api) => {
 	// TODO: Get maxid fron DB for starting point
 	//let maxId = (async function getMax() {
 		//const max = await db.getMaxId();
@@ -53,8 +53,6 @@ function listenForChanges(api) {
 			maxId = newMaxId;
 		}
 	});
-}
 
-module.exports = {
-	listenForChanges	
+	return maxIdEndpoint;
 }

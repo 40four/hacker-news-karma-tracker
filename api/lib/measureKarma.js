@@ -1,8 +1,7 @@
 const log = require('pino')({'level': 'debug'});
-const db = require("../database/pool.js");
-//const { api } = require('./index.js');
+const db = require("../../database/pool.js");
 
-function measureAllKarma(api) {
+exports.allKarma = (api) => {
 	const genUserEndpoint = (username) => api.ref(`/v0/user/${username}`);
 
 	(async function getAllUserKarma() {
@@ -20,7 +19,3 @@ function measureAllKarma(api) {
 
 	})();
 }
-
-module.exports = {
-	measureAllKarma
-};

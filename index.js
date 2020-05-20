@@ -1,36 +1,23 @@
 const log = require('pino')({'level': 'debug'});
-var CronJob = require('cron').CronJob;
 
-const { 
-	api,
-	maxId,
-	measure
-} = require('./api/index.js');
+const HN = require('./api/index.js');
 
+//try {
 
-try {
-	maxId.listenForChanges(api);
+	
 
-	const job = new CronJob(
-		'0 0 0 * * *',
-		measure.measureAllKarma(api);,
-		null,
-		true,
-		'America/Los_Angeles'
-	);
+//} catch (err) {
 
-} catch (err) {
+	//log.error({...err}, "Main app error");
 
-	log.error({...err}, "Main app error");
+//} finally {
 
-} finally {
-	//const shutdown = (app) => {
-		//app.delete()
-		  //.then(function() {
-			//console.log("App deleted successfully");
-		  //})
-		  //.catch(function(error) {
-			//console.log("Error deleting app:", error);
-		  //});
-	//};
-}
+	//HN.app.delete()
+	  //.then(function() {
+		//log.info("App deleted successfully");
+	  //})
+	  //.catch(function(error) {
+		//log.error("Error deleting app:", error);
+	  //});
+
+//}
