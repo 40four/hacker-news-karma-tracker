@@ -37,12 +37,16 @@ function insertUser(userName, itemNum) {
 		[ userName, itemNum ],
 		function(err, results) {
 			if (err) {
-				log.error(err.code);
+				log.error({...err});
+			} else {
+				log.debug(
+					{
+						'insert id': results.insertId,
+						'affected rows': results.affectedRows
+					},
+					"Insert User success"
+				);
 			}
-			log.debug(
-				{...results},
-				"Insert User success"
-			);
 		}
 	)
 }
@@ -58,15 +62,17 @@ function updateUser(userId, itemId) {
 		updateUserQuery,
 		[ itemId, userId ],
 		function(err, results) {
-			if (err) log.error(err);
-			log.debug({
-				'user id': userId,
-				'response': results
-			}, "Update User success");
+			if (err) {
+				log.error(err);
+			} else {
+				log.debug({
+					'user id': userId,
+					'response': results.info
+				}, "Update User success");
+			}
 		}
 	)
 }
-
 
 const insertKarmaQuery = [
 	'INSERT INTO Karma',
@@ -85,7 +91,6 @@ function insertKarma(userId, karma) {
 		}
 	)
 }
-
 
 const selectAllUsers = 'SELECT UserID, Username FROM User';
 
@@ -108,10 +113,21 @@ async function getUserByName(name) {
 	return rows;
 }
 
+const maxIdQuery = 'SELECT MAX(NewestItem) AS max FROM User';
+
+async function getMaxItemId() {
+	const [ rows ] = await promisePool.execute(
+		maxIdQuery
+	).catch((err) => log.error({...err}, "Get max item ID failed"));
+
+	return rows;
+}
+
 module.exports = {
 	insertUser,
 	updateUser,
 	insertKarma,
 	getAllUsers,
-	getUserByName
+	getUserByName,
+	getMaxItemId
 }
