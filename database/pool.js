@@ -123,11 +123,54 @@ async function getMaxItemId() {
 	return rows;
 }
 
+const todayKarmaQuery = [
+	'SELECT * FROM Karma',
+	'WHERE UserID = ?',
+	'AND CreatedAt BETWEEN ?',
+	'AND ?'
+].join(' ');
+
+async function compareKarma(userId, dayOne, dayTwo) {
+	const [ rows ] = await promisePool.execute(
+		todayKarmaQuery,
+		[ userId, dayOne, dayTwo ],
+
+	).catch((err) => log.error({...err}, "Compare Karma failed"));
+
+	return rows;
+}
+
+const insertDiffQuery = [
+	'INSERT INTO Diff',
+	'( UserID, FirstKarmaID, SecondKarmaID, Diff )',
+	'VALUES ( ?, ?, ?, ? )'
+].join(' ');
+
+function insertDiff(userId, firstKarmaId, secondKarmaId, diff) {
+	pool.execute(
+		insertDiffQuery,
+		[ userId, firstKarmaId, secondKarmaId, diff ],
+		function(err, results) {
+			if (err) {
+				log.error({...err}, "Insert Diff Fail");
+			} else {
+				log.debug({
+					'Insert ID': results.insertId,
+					'affected rows': results.affectedRows
+				}, "Insert Diff results");
+			}
+		}
+	)
+}
+
+
 module.exports = {
 	insertUser,
 	updateUser,
 	insertKarma,
 	getAllUsers,
 	getUserByName,
-	getMaxItemId
+	getMaxItemId,
+	compareKarma,
+	insertDiff
 }

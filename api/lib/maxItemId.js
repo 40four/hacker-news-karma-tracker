@@ -1,10 +1,10 @@
 const log = require('pino')({'level': 'debug'});
 const db = require("../../database/pool.js");
-const backfill = require('./backfill.js');
+//const backfill = require('./backfill.js');
 
-exports.listenForChanges = async (api) => {
+exports.initListener = async (api) => {
 
-	const maxCheck = await backfill.backfill();
+	const maxCheck = await db.getMaxItemId();
 	log.debug({...maxCheck}, 'Max check');
 
 	if (maxCheck.length) {
@@ -29,12 +29,11 @@ exports.listenForChanges = async (api) => {
 			// Wait for items to be ready, seems to be a small delay	
 			setTimeout(() => {
 				const itemGen = iterateItems(newMaxId, diff, api);
-				let res = itemGen.next();
+				let iter = itemGen.next();
 				
-				log.debug('fuck you');
-				while(!res.done) {
-					log.debug('iterator');
-					res = itemGen.next();
+				while(!iter.done) {
+					//log.debug('iterator');
+					iter = itemGen.next();
 				}
 			}, (20000))
 
@@ -46,6 +45,9 @@ exports.listenForChanges = async (api) => {
 	return maxIdEndpoint;
 }
 
+/**
+ * Generator funtion 
+ */
 function* iterateItems(newMaxId, diff, api) {
 	let cnt = 0;
 
@@ -72,7 +74,6 @@ function* iterateItems(newMaxId, diff, api) {
 						}
 					})();
 				}
-
 			}
 		});
 

@@ -1,7 +1,7 @@
 {
-  "name": "firebasetest",
+  "name": "hacker-news-karma-tracker",
   "version": "1.0.0",
-  "description": "",
+  "description": "Measure day to day Karma changes in active users.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,10 +9,10 @@
   "author": "Sean Thompson",
   "license": "ISC",
   "dependencies": {
-    "@mysql/xdevapi": "^8.0.19",
     "cron": "^1.8.2",
     "dotenv": "^8.2.0",
     "firebase": "^7.14.1",
+    "luxon": "^1.24.1",
     "mysql2": "^2.1.0",
     "pino": "^6.2.1"
   }
