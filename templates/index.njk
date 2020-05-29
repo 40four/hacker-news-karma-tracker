@@ -1,0 +1,80 @@
+---
+layout: base.njk
+---
+<section class="hero is-light">
+	<div class="hero-body">
+		<div class="container has-text-centered">
+			<h1 class="title">
+				Hacker News Karma Leaderboard
+			</h1>
+
+			<h2 class="subtitle">
+				{{ dateObj.month }}/{{ dateObj.day }}/{{ dateObj.year }}
+			</h2>
+		</div>
+	</div>
+</section>
+
+<section class="hero is-success">
+	<div class="hero-body">
+		<div class="container">
+			<h1 class="title">
+				Top 20
+			</h1>
+
+			<h2 class="subtitle">
+				The good ones
+			</h2>
+		</div>
+	</div>
+</section>
+
+{#<secion>#}
+	{#<container>#}
+		<div class="tile is-ancestor">
+			<div class="tile is-parent is-vertical">
+				{% for user in gainers %}
+					<div class="tile is-child box">
+						<!-- Add content or other tiles -->
+						<p>{{ user.Username }} - {{ user.diff }}</p>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	{#</container>#}
+{#</section>#}
+
+<section class="hero is-danger">
+	<div class="hero-body">
+		<div class="container">
+			<h1 class="title">
+				Bottom 20
+			</h1>
+
+			<h2 class="subtitle">
+				The bad ones
+			</h2>
+		</div>
+	</div>
+</section>
+		<div class="tile is-ancestor">
+			<div class="tile is-parent is-vertical">
+				{% for user in losers %}
+					<div class="tile is-child box">
+						<!-- Add content or other tiles -->
+						<p>{{ user.Username }} - {{ user.diff }}</p>
+					</div>
+				{% endfor %}
+			</div>
+	
+{#<div class="content">#}
+
+	{#{% for user in gainers %}#}
+		{#<p>{{ user.Username }} - {{ user.diff }}</p>#}
+	{#{% endfor %}#}
+
+	{#{% for user in losers %}#}
+		{#<p>{{ user.Username }} - {{ user.diff }}</p>#}
+	{#{% endfor %}#}
+
+{#</div>#}

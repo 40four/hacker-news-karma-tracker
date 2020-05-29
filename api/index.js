@@ -28,5 +28,5 @@ const karmaCron = new CronJob({
 	runOnInit: false
 });
 
-//const yesterday = DateTime.local().minus({ days: 2 });
-//karma.compare(yesterday);
+const yesterday = DateTime.local().minus({ days: 6 });
+karma.compare(yesterday);

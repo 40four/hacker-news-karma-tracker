@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Karma Police</title>
+    <link rel="stylesheet" href="css/mystyles.css">
+    {#<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>#}
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item is-size-3" href="/">Karma Police</a>
+
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+ 
+    </nav>
+
+    {#<div class="section">#}
+
+        {#<div class="container">#}
+
+                {{ content | safe }}
+
+        {#</div>#}
+
+    {#</div>#}
+
+</body>
+
+</html>

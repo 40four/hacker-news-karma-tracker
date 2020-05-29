@@ -1,19 +1,27 @@
 {
-  "name": "hacker-news-karma-tracker",
-  "version": "1.0.0",
-  "description": "Measure day to day Karma changes in active users.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Sean Thompson",
-  "license": "ISC",
-  "dependencies": {
-    "cron": "^1.8.2",
-    "dotenv": "^8.2.0",
-    "firebase": "^7.14.1",
-    "luxon": "^1.24.1",
-    "mysql2": "^2.1.0",
-    "pino": "^6.2.1"
-  }
+	"name": "hacker-news-karma-tracker",
+	"version": "1.0.0",
+	"description": "Measure day to day Karma changes in active users.",
+	"main": "index.js",
+	"scripts": {
+		"css-build": "node-sass --omit-source-map-url sass/mystyles.scss templates/css/mystyles.css",
+		"css-watch": "npm run css-build -- --watch",
+		"start": "npm run css-watch"
+	},
+		"author": "Sean Thompson",
+		"license": "ISC",
+		"dependencies": {
+		"cron": "^1.8.2",
+		"dotenv": "^8.2.0",
+		"firebase": "^7.14.1",
+		"luxon": "^1.24.1",
+		"mysql2": "^2.1.0",
+		"nunjucks": "^3.2.1",
+		"pino": "^6.2.1"
+	},
+		"devDependencies": {
+		"@11ty/eleventy": "^0.11.0",
+		"bulma": "^0.8.2",
+		"node-sass": "^4.14.1"
+	}
 }

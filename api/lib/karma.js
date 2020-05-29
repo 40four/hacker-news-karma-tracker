@@ -1,6 +1,7 @@
 const log = require('pino')({'level': 'debug'});
 const db = require("../../database/pool.js");
 const { DateTime } = require("luxon");
+const { writeDataFile } = require("./writeDataFile");
 
 exports.measureAll = (api) => {
 	const genUserEndpoint = (username) => api.ref(`/v0/user/${username}`);
@@ -15,12 +16,13 @@ exports.measureAll = (api) => {
 			});
 		}
 	})();
-
 }
 
 exports.compare = (startDay) => {
 	//const now = new Date();
 	const now = DateTime.fromISO(startDay.toISO());
+
+	const dateObj = now.startOf('day').toObject();
 
 	const midnightToday = now.startOf('day').toISO();
 
@@ -42,6 +44,7 @@ exports.compare = (startDay) => {
 
 		for (const curUser of allUsers) {
 			const userId = curUser.UserID;
+			const userName = curUser.Username;
 			const karmaOne = await db.compareKarma(
 				userId,
 				midnightYesterday,
@@ -64,6 +67,7 @@ exports.compare = (startDay) => {
 
 				const thisResult = {
 					'UserID': userId,
+					'Username': userName,
 					'diff': diff
 				}
 				
@@ -80,6 +84,15 @@ exports.compare = (startDay) => {
 
 		log.info({...gainers}, 'Top 20 Gainers');
 		log.info({...losers}, 'Top 20 Losers');
+
+		const dataForFile = {
+			'gainers': gainers,
+			'losers': losers,
+			'dateObj': dateObj
+		};
+
+		writeDataFile(dataForFile);
+
 	})();
 
 }
