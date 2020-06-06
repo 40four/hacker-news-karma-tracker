@@ -29,20 +29,28 @@ layout: base.njk
 	</div>
 </section>
 
-{#<secion>#}
-	{#<container>#}
-		<div class="tile is-ancestor">
-			<div class="tile is-parent is-vertical">
+<section class="section">
+	<div class="container">
+		<table class="table is-striped is-hoverable is-fullwidth">
+			<thead>
+				<tr>
+					<th>Pos</th>
+					<th>Username</th>
+					<th>Karma Gained</th>
+				</tr>
+			</thead>
+			<tbody>
 				{% for user in gainers %}
-					<div class="tile is-child box">
-						<!-- Add content or other tiles -->
-						<p>{{ user.Username }} - {{ user.diff }}</p>
-					</div>
+				<tr>
+					<th>{{ loop.index }}</th>
+					<th>{{ user.Username }}</th>
+					<th>{{ user.diff }}</th>
+				</tr>
 				{% endfor %}
-			</div>
-		</div>
-	{#</container>#}
-{#</section>#}
+			</tbody>
+		</table>
+	</div>
+</section>
 
 <section class="hero is-danger">
 	<div class="hero-body">
@@ -57,24 +65,26 @@ layout: base.njk
 		</div>
 	</div>
 </section>
-		<div class="tile is-ancestor">
-			<div class="tile is-parent is-vertical">
+
+<section class="section">
+	<div class="container">
+		<table class="table is-striped is-hoverable is-fullwidth">
+			<thead>
+				<tr>
+					<th>Pos</th>
+					<th>Username</th>
+					<th>Karma Lost</th>
+				</tr>
+			</thead>
+			<tbody>
 				{% for user in losers %}
-					<div class="tile is-child box">
-						<!-- Add content or other tiles -->
-						<p>{{ user.Username }} - {{ user.diff }}</p>
-					</div>
+				<tr>
+					<th>{{ loop.index }}</th>
+					<th>{{ user.Username }}</th>
+					<th>{{ user.diff }}</th>
+				</tr>
 				{% endfor %}
-			</div>
-	
-{#<div class="content">#}
-
-	{#{% for user in gainers %}#}
-		{#<p>{{ user.Username }} - {{ user.diff }}</p>#}
-	{#{% endfor %}#}
-
-	{#{% for user in losers %}#}
-		{#<p>{{ user.Username }} - {{ user.diff }}</p>#}
-	{#{% endfor %}#}
-
-{#</div>#}
+			</tbody>
+		</table>
+	</div>
+</section>
