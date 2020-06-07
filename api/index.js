@@ -28,5 +28,15 @@ const karmaCron = new CronJob({
 	runOnInit: false
 });
 
-const yesterday = DateTime.local().minus({ days: 6 });
-karma.compare(yesterday);
+//Fire every night at midnight 
+const karmaCron = new CronJob({
+	cronTime: '15 0 * * *',
+	onTick: () => karma.compare(),
+	start: true,
+	timeZone: 'America/New_York',
+	runOnInit: false
+});
+
+
+//const yesterday = DateTime.local();
+//karma.compare(yesterday);

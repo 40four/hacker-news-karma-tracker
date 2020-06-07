@@ -1,6 +1,6 @@
 {
 	"name": "hacker-news-karma-tracker",
-	"version": "1.0.0",
+	"version": "0.1.0",
 	"description": "Measure day to day Karma changes in active users.",
 	"main": "index.js",
 	"scripts": {
@@ -8,9 +8,9 @@
 		"css-watch": "npm run css-build -- --watch",
 		"start": "npm run css-watch"
 	},
-		"author": "Sean Thompson",
-		"license": "ISC",
-		"dependencies": {
+	"author": "Sean Thompson",
+	"license": "MPL-2.0",
+	"dependencies": {
 		"cron": "^1.8.2",
 		"dotenv": "^8.2.0",
 		"firebase": "^7.14.1",
@@ -19,7 +19,7 @@
 		"nunjucks": "^3.2.1",
 		"pino": "^6.2.1"
 	},
-		"devDependencies": {
+	"devDependencies": {
 		"@11ty/eleventy": "^0.11.0",
 		"bulma": "^0.8.2",
 		"node-sass": "^4.14.1"
