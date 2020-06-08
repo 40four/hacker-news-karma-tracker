@@ -20,7 +20,7 @@ const api = firebase.database(app);
 const maxIdRef = maxItemId.initListener(api);
 
 //Fire every night at midnight 
-const karmaCron = new CronJob({
+const karmaMeasureCron = new CronJob({
 	cronTime: '0 0 * * *',
 	onTick: () => karma.measureAll(api),
 	start: true,
@@ -29,7 +29,7 @@ const karmaCron = new CronJob({
 });
 
 //Fire every night at midnight 
-const karmaCron = new CronJob({
+const karmaCompareCron = new CronJob({
 	cronTime: '15 0 * * *',
 	onTick: () => karma.compare(),
 	start: true,
