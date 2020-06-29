@@ -1,7 +1,29 @@
----
-layout: base.njk
----
-<section class="hero is-light">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Karma Police</title>
+    <link rel="stylesheet" href="/css/mystyles.css">
+    
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item is-size-3" href="/">Karma Police</a>
+
+            
+                
+                
+                
+                
+            
+        </div>
+    </nav>
+
+	<section class="hero is-light">
 	<div class="hero-body">
 		<div class="container has-text-centered">
 			<h1 class="title">
@@ -9,7 +31,7 @@ layout: base.njk
 			</h1>
 
 			<h2 class="subtitle">
-				{{ dateObj.month }}/{{ dateObj.day }}/{{ dateObj.year }}
+				6/24/2020
 			</h2>
 		</div>
 	</div>
@@ -40,13 +62,7 @@ layout: base.njk
 				</tr>
 			</thead>
 			<tbody>
-				{% for user in gainers %}
-				<tr>
-					<th>{{ loop.index }}</th>
-					<th>{{ user.Username }}</th>
-					<th>{{ user.Diff }}</th>
-				</tr>
-				{% endfor %}
+				
 			</tbody>
 		</table>
 	</div>
@@ -77,14 +93,13 @@ layout: base.njk
 				</tr>
 			</thead>
 			<tbody>
-				{% for user in losers %}
-				<tr>
-					<th>{{ loop.index }}</th>
-					<th>{{ user.Username }}</th>
-					<th>{{ user.Diff }}</th>
-				</tr>
-				{% endfor %}
+				
 			</tbody>
 		</table>
 	</div>
 </section>
+
+
+</body>
+
+</html>

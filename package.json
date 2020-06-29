@@ -11,6 +11,7 @@
 	"author": "Sean Thompson",
 	"license": "MPL-2.0",
 	"dependencies": {
+		"bulma-calendar": "^6.0.7",
 		"cron": "^1.8.2",
 		"dotenv": "^8.2.0",
 		"firebase": "^7.14.1",

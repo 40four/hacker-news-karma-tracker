@@ -70,12 +70,17 @@ exports.compare = () => {
 				const thisResult = {
 					'UserID': userId,
 					'Username': userName,
-					'diff': diff
+					'Diff': diff
 				}
 				
 				allDiffs.push(thisResult)
 
-				db.insertDiff(karmaOne[0].UserID, karmaOne[0].KarmaID, karmaTwo[0].KarmaID, diff);
+				db.insertDiff(
+					karmaOne[0].UserID,
+					karmaOne[0].KarmaID,
+					karmaTwo[0].KarmaID,
+					diff
+				);
 			}
 		}
 
@@ -93,7 +98,7 @@ exports.compare = () => {
 			'dateObj': dateObj
 		};
 
-		archiveDataFile();
+		//archiveDataFile();
 
 		writeDataFile(dataForFile);
 	})();

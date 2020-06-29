@@ -17,26 +17,25 @@ log.info(`Firebase initialized - ${app.name}`);
 // Get HN database
 const api = firebase.database(app);
 
-const maxIdRef = maxItemId.initListener(api);
+//const maxIdRef = maxItemId.initListener(api);
 
 //Fire every night at midnight 
-const karmaMeasureCron = new CronJob({
-	cronTime: '0 0 * * *',
-	onTick: () => karma.measureAll(api),
-	start: true,
-	timeZone: 'America/New_York',
-	runOnInit: false
-});
+//const karmaMeasureCron = new CronJob({
+	//cronTime: '0 0 * * *',
+	//onTick: () => karma.measureAll(api),
+	//start: true,
+	//timeZone: 'America/New_York',
+	//runOnInit: false
+//});
 
-//Fire every night at midnight 
-const karmaCompareCron = new CronJob({
-	cronTime: '15 0 * * *',
-	onTick: () => karma.compare(),
-	start: true,
-	timeZone: 'America/New_York',
-	runOnInit: false
-});
+//Fire every night at 12:15 
+//const karmaCompareCron = new CronJob({
+	//cronTime: '15 0 * * *',
+	//onTick: () => karma.compare(),
+	//start: true,
+	//timeZone: 'America/New_York',
+	//runOnInit: false
+//});
 
-
-//const yesterday = DateTime.local();
-//karma.compare(yesterday);
+//karma.measureAll(api);
+karma.compare()

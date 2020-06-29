@@ -163,6 +163,28 @@ function insertDiff(userId, firstKarmaId, secondKarmaId, diff) {
 	)
 }
 
+const oneDayDiffsQuery = [
+	'SELECT d.UserID, u.Username, d.Diff',
+	'FROM Diff d',
+	'INNER JOIN User u ON u.UserID = d.UserID',
+	'WHERE d.CreatedAt <= ?',
+	'AND d.CreatedAt >= ?'
+].join(' ');
+
+async function getOneDayDiffs(dayOne, dayTwo) {
+	//log.debug({
+		//'1': dayOne,
+		//'2': dayTwo
+	//}, 'days one and two');
+	const [ rows ] = await promisePool.execute(
+		oneDayDiffsQuery,
+		[ dayTwo, dayOne ],
+
+	).catch((err) => log.error({...err}, "Compare Karma failed"));
+	
+	//log.debug({...rows}, 'One day difs');
+	return rows;
+}
 
 module.exports = {
 	insertUser,
@@ -172,5 +194,6 @@ module.exports = {
 	getUserByName,
 	getMaxItemId,
 	compareKarma,
-	insertDiff
+	insertDiff,
+	getOneDayDiffs
 }
