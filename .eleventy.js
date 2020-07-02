@@ -1,8 +1,10 @@
 module.exports = function(eleventyConfig) {
 	eleventyConfig.setTemplateFormats([
 		"njk",
-		"css"
+		"css",
 	]);
+
+	eleventyConfig.addPassthroughCopy('js');
 
 	return {
 		dir: {

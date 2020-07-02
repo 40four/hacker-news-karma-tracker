@@ -5,3 +5,5 @@ $hn_orange: #ff6600;
 $navbar-background-color: $hn_orange;
 
 @import "../node_modules/bulma/bulma.sass";
+@import "../node_modules/bulma-calendar/src/sass/index.sass";
+//@import "../node_modules/flatpickr/dist/flatpickr.min.css";

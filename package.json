@@ -4,7 +4,8 @@
 	"description": "Measure day to day Karma changes in active users.",
 	"main": "index.js",
 	"scripts": {
-		"css-build": "node-sass --omit-source-map-url sass/mystyles.scss templates/css/mystyles.css",
+		"css-build": "node-sass --omit-source-map-url sass/bulma.scss templates/css/bulma.css",
+		"css-build-2": "node-sass --omit-source-map-url sass/flatpickr.min.css templates/css/flatpickr.css",
 		"css-watch": "npm run css-build -- --watch",
 		"start": "npm run css-watch"
 	},
@@ -15,6 +16,7 @@
 		"cron": "^1.8.2",
 		"dotenv": "^8.2.0",
 		"firebase": "^7.14.1",
+		"flatpickr": "^4.6.3",
 		"luxon": "^1.24.1",
 		"mysql2": "^2.1.0",
 		"nunjucks": "^3.2.1",

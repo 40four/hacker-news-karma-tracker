@@ -20,22 +20,22 @@ const api = firebase.database(app);
 //const maxIdRef = maxItemId.initListener(api);
 
 //Fire every night at midnight 
-//const karmaMeasureCron = new CronJob({
-	//cronTime: '0 0 * * *',
-	//onTick: () => karma.measureAll(api),
-	//start: true,
-	//timeZone: 'America/New_York',
-	//runOnInit: false
-//});
+const karmaMeasureCron = new CronJob({
+	cronTime: '0 0 * * *',
+	onTick: () => karma.measureAll(api),
+	start: true,
+	timeZone: 'America/New_York',
+	runOnInit: false
+});
 
 //Fire every night at 12:15 
-//const karmaCompareCron = new CronJob({
-	//cronTime: '15 0 * * *',
-	//onTick: () => karma.compare(),
-	//start: true,
-	//timeZone: 'America/New_York',
-	//runOnInit: false
-//});
+const karmaCompareCron = new CronJob({
+	cronTime: '15 0 * * *',
+	onTick: () => karma.compare(),
+	start: true,
+	timeZone: 'America/New_York',
+	runOnInit: false
+});
 
 //karma.measureAll(api);
-karma.compare()
+//karma.compare()

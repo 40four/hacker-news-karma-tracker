@@ -1,0 +1,14 @@
+name = "hn-karma"
+type = "webpack"
+account_id = "42e00edd7ae244ee1c328a8c877cfdbd"
+workers_dev = true
+route = ""
+zone_id = ""
+
+[site]
+bucket = "./_site"
+entry-point = "workers-site"
+
+[env.production]
+route = "*karmapolice.xyz/*"
+zone_id = "ba76ab7ec7357fb51aa89b400d610642"

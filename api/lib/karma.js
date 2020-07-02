@@ -98,7 +98,7 @@ exports.compare = () => {
 			'dateObj': dateObj
 		};
 
-		//archiveDataFile();
+		archiveDataFile();
 
 		writeDataFile(dataForFile);
 	})();
