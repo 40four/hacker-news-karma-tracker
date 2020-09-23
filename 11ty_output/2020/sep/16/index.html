@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Karma Police</title>
+    <link rel="stylesheet" href="/css/bulma.css">
+    <link rel="stylesheet" href="/css/flatpickr.css">
+	<script src="/js/flatpickr.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item is-size-3" href="/">Karma Police</a>
+
+			<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+				data-target="navbarMenu">
+				<span aria-hidden="true"></span>
+				<span aria-hidden="true"></span>
+				<span aria-hidden="true"></span>
+			</a>
+        </div>
+		<div id="navbarMenu" class="navbar-menu">
+			<div class="navbar-start">
+				<a id="calendar" class="navbar-item">
+					Calendar
+				</a>
+				<a class="navbar-item">
+					About
+				</a>
+			</div>
+		</div>
+    </nav>
+
+	<section class="hero is-light">
+	<div class="hero-body">
+		<div class="container has-text-centered">
+			<h1 class="title">
+				Hacker News Karma Leaderboard
+			</h1>
+
+			<h2 class="subtitle">
+				9/16/2020
+			</h2>
+			
+			
+				
+					
+				
+			
+		</div>
+	</div>
+</section>
+
+<section class="hero is-success">
+	<div class="hero-body">
+		<div class="container">
+			<h1 class="title">
+				Top 20
+			</h1>
+
+			<h2 class="subtitle">
+				The good ones
+			</h2>
+		</div>
+	</div>
+</section>
+
+<section class="section">
+	<div class="container">
+		<table class="table is-striped is-hoverable is-fullwidth">
+			<thead>
+				<tr>
+					<th>Pos</th>
+					<th>Username</th>
+					<th>Karma Gained</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				<tr>
+					<th>1</th>
+					<th>pseudolus</th>
+					<th>527</th>
+				</tr>
+				
+				<tr>
+					<th>2</th>
+					<th>jasonkester</th>
+					<th>415</th>
+				</tr>
+				
+				<tr>
+					<th>3</th>
+					<th>maple3142</th>
+					<th>337</th>
+				</tr>
+				
+				<tr>
+					<th>4</th>
+					<th>tosh</th>
+					<th>302</th>
+				</tr>
+				
+				<tr>
+					<th>5</th>
+					<th>djaque</th>
+					<th>299</th>
+				</tr>
+				
+				<tr>
+					<th>6</th>
+					<th>janvdberg</th>
+					<th>202</th>
+				</tr>
+				
+				<tr>
+					<th>7</th>
+					<th>adrian_mrd</th>
+					<th>201</th>
+				</tr>
+				
+				<tr>
+					<th>8</th>
+					<th>crazypython</th>
+					<th>201</th>
+				</tr>
+				
+				<tr>
+					<th>9</th>
+					<th>anonAndOn</th>
+					<th>198</th>
+				</tr>
+				
+				<tr>
+					<th>10</th>
+					<th>alz</th>
+					<th>191</th>
+				</tr>
+				
+				<tr>
+					<th>11</th>
+					<th>DoingIsLearning</th>
+					<th>191</th>
+				</tr>
+				
+				<tr>
+					<th>12</th>
+					<th>leeny</th>
+					<th>191</th>
+				</tr>
+				
+				<tr>
+					<th>13</th>
+					<th>kristoff_it</th>
+					<th>143</th>
+				</tr>
+				
+				<tr>
+					<th>14</th>
+					<th>DCKing</th>
+					<th>142</th>
+				</tr>
+				
+				<tr>
+					<th>15</th>
+					<th>luu</th>
+					<th>136</th>
+				</tr>
+				
+				<tr>
+					<th>16</th>
+					<th>RabbitmqGuy</th>
+					<th>131</th>
+				</tr>
+				
+				<tr>
+					<th>17</th>
+					<th>kirillzubovsky</th>
+					<th>126</th>
+				</tr>
+				
+				<tr>
+					<th>18</th>
+					<th>dwenzek</th>
+					<th>122</th>
+				</tr>
+				
+				<tr>
+					<th>19</th>
+					<th>cmrdporcupine</th>
+					<th>117</th>
+				</tr>
+				
+				<tr>
+					<th>20</th>
+					<th>kaboro</th>
+					<th>111</th>
+				</tr>
+				
+			</tbody>
+		</table>
+	</div>
+</section>
+
+<section class="hero is-danger">
+	<div class="hero-body">
+		<div class="container">
+			<h1 class="title">
+				Bottom 20
+			</h1>
+
+			<h2 class="subtitle">
+				The bad ones
+			</h2>
+		</div>
+	</div>
+</section>
+
+<section class="section">
+	<div class="container">
+		<table class="table is-striped is-hoverable is-fullwidth">
+			<thead>
+				<tr>
+					<th>Pos</th>
+					<th>Username</th>
+					<th>Karma Lost</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				<tr>
+					<th>1</th>
+					<th>kristopher</th>
+					<th>-35</th>
+				</tr>
+				
+				<tr>
+					<th>2</th>
+					<th>jacobwilliamroy</th>
+					<th>-31</th>
+				</tr>
+				
+				<tr>
+					<th>3</th>
+					<th>chromedev</th>
+					<th>-22</th>
+				</tr>
+				
+				<tr>
+					<th>4</th>
+					<th>DaniloDias</th>
+					<th>-18</th>
+				</tr>
+				
+				<tr>
+					<th>5</th>
+					<th>aaron695</th>
+					<th>-16</th>
+				</tr>
+				
+				<tr>
+					<th>6</th>
+					<th>kop316</th>
+					<th>-14</th>
+				</tr>
+				
+				<tr>
+					<th>7</th>
+					<th>taway2600</th>
+					<th>-14</th>
+				</tr>
+				
+				<tr>
+					<th>8</th>
+					<th>collyw</th>
+					<th>-10</th>
+				</tr>
+				
+				<tr>
+					<th>9</th>
+					<th>cycrutchfield</th>
+					<th>-10</th>
+				</tr>
+				
+				<tr>
+					<th>10</th>
+					<th>new_realist</th>
+					<th>-10</th>
+				</tr>
+				
+				<tr>
+					<th>11</th>
+					<th>OneGuy123</th>
+					<th>-9</th>
+				</tr>
+				
+				<tr>
+					<th>12</th>
+					<th>matchbok</th>
+					<th>-8</th>
+				</tr>
+				
+				<tr>
+					<th>13</th>
+					<th>abc-xyz</th>
+					<th>-7</th>
+				</tr>
+				
+				<tr>
+					<th>14</th>
+					<th>brian_herman__</th>
+					<th>-7</th>
+				</tr>
+				
+				<tr>
+					<th>15</th>
+					<th>tus88</th>
+					<th>-7</th>
+				</tr>
+				
+				<tr>
+					<th>16</th>
+					<th>dangus</th>
+					<th>-6</th>
+				</tr>
+				
+				<tr>
+					<th>17</th>
+					<th>dfee</th>
+					<th>-6</th>
+				</tr>
+				
+				<tr>
+					<th>18</th>
+					<th>Krasnol</th>
+					<th>-6</th>
+				</tr>
+				
+				<tr>
+					<th>19</th>
+					<th>lemmonii</th>
+					<th>-6</th>
+				</tr>
+				
+				<tr>
+					<th>20</th>
+					<th>lightgreen</th>
+					<th>-6</th>
+				</tr>
+				
+			</tbody>
+		</table>
+	</div>
+</section>
+
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+
+		  // Get all "navbar-burger" elements
+		  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+		  // Check if there are any navbar burgers
+		  if ($navbarBurgers.length > 0) {
+
+			// Add a click event on each of them
+			$navbarBurgers.forEach( el => {
+			  el.addEventListener('click', () => {
+
+				// Get the target from the "data-target" attribute
+				const target = el.dataset.target;
+				const $target = document.getElementById(target);
+
+				// Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+				el.classList.toggle('is-active');
+				$target.classList.toggle('is-active');
+
+			  });
+			});
+		  }
+
+		});
+
+
+		const today = new Date();
+		const startDate = Date.parse('2020-06-09');
+		const options = {
+			dateFormat: 'Y/M/j',
+			minDate: startDate,
+			maxDate: today,
+			startDate: today,
+			onChange: (selectedDates, dateStr, instance) => {
+				const split = dateStr.split('/');
+				const url = `/${split[0]}/${split[1]}/${split[2]}`;
+				const state = {'date': dateStr};
+				const title = dateStr;
+				history.pushState(state, title, url);
+				window.location.href = url;
+			}
+
+		};
+		
+		flatpickr("#calendar", options);
+
+	</script>
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const log = require('pino')({'level': 'debug'});
+const { DateTime } = require("luxon");
 
 exports.writeDataFile = (data, killProcess) => {
 	//const dataObj = {
@@ -8,7 +9,7 @@ exports.writeDataFile = (data, killProcess) => {
 	//};
 
 	fs.writeFileSync(
-		"templates/index.json",
+		"11ty_input/index.json",
 		JSON.stringify(data),
 		(err) => {
 			if (err) throw err;
@@ -22,32 +23,34 @@ exports.writeDataFile = (data, killProcess) => {
 
 exports.archiveDataFile = () => {
 	log.info('Archive started');
-	const oldData = require("../../templates/index.json");
+	const oldData = require("../../11ty_input/index.json");
 	const year = oldData.dateObj.year;
 	const month = oldData.dateObj.month;
 	const day = oldData.dateObj.day;
+	const dt = DateTime.fromObject(oldData.dateObj);
+	const monthAbbrev = dt.toFormat('LLL').toLowerCase();
 	//log.debug({
 		//'year': year,
 		//'month': month,
 		//'day': day
 	//}, `imported data`);
-	const destDir = `templates/${year}/${month}`;
+	const destDir = `11ty_input/${year}/${monthAbbrev}`;
 
 	function copyJsonCb(err) {
 		if (err) throw err;
-		log.info(`templates/index.json was copied to ${destDir}/${day}.json`);
+		log.info(`11ty_input/index.json was copied to ${destDir}/${day}.json`);
 	}
 
 	if (fs.existsSync(destDir)) {
 		fs.copyFileSync(
-			"templates/index.json",
+			"11ty_input/index.json",
 			`${destDir}/${day}.json`,
 			copyJsonCb
 		);
 	} else {
 		fs.mkdirSync(destDir, { recursive: true });
 		fs.copyFileSync(
-			"templates/index.json",
+			"11ty_input/index.json",
 			`${destDir}/${day}.json`,
 			copyJsonCb
 		);
@@ -55,8 +58,8 @@ exports.archiveDataFile = () => {
 
 	function copyNjkCb(err) {
 		if (err) throw err;
-		log.info(`templates/index.njk was copied to ${destDir}/${day}.njk`);
+		log.info(`11ty_input/index.njk was copied to ${destDir}/${day}.njk`);
 	}
-	fs.copyFileSync("templates/index.njk", `${destDir}/${day}.njk`, copyNjkCb)
+	fs.copyFileSync("11ty_input/index.njk", `${destDir}/${day}.njk`, copyNjkCb)
 	log.info('Archive finished');
 }
