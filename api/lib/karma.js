@@ -1,7 +1,7 @@
 const log = require('pino')({'level': 'debug'});
 const db = require("../../database/pool.js");
 const { DateTime } = require("luxon");
-const { writeDataFile, archiveDataFile} = require("./writeDataFile");
+const { writeDataFile, archiveDataFile } = require("./writeDataFile");
 
 exports.measureAll = (api) => {
 	const genUserEndpoint = (username) => api.ref(`/v0/user/${username}`);

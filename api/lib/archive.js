@@ -4,7 +4,8 @@ const { DateTime } = require("luxon");
 const log = require('pino')({'level': 'debug'});
 
 (async () => {
-	files.archiveDataFile();
+	//files.archiveDataFile();
+	files.newArchive();
 
 	const myArgs = process.argv.slice(2);
 	log.debug({...myArgs}, 'myArgs' );
